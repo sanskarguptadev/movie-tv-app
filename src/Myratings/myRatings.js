@@ -12,11 +12,13 @@ class Myratings extends React.Component {
         var rating = []
         name = JSON.parse(localStorage.getItem('name'));
         rating = JSON.parse(localStorage.getItem('rating'));
-        for(var i =0 ; i<name.length; i++){
-            var jsonObj = {}
-            jsonObj['name'+ i] = name[i];
-            jsonObj['rating' + i] = rating[i];
-            data.push(jsonObj);
+        if(name != null){
+            for(var i =0 ; i<name.length; i++){
+                var jsonObj = {}
+                jsonObj['name'+ i] = name[i];
+                jsonObj['rating' + i] = rating[i];
+                data.push(jsonObj);
+            }
         }
         return(
             <div>
@@ -28,14 +30,22 @@ class Myratings extends React.Component {
                             </td>
                         </tr>
                         <tr>
+                            {data.length === 0? 
                             <td>
-                                <p>Movie List</p>
-                                {data.map((item,index) => <p>{item['name'+index]}</p>)} 
-                            </td>
-                            <td>
-                                <p>My Ratings</p>
-                                {data.map((item,index) => <p>{item['rating'+index]}</p>)}
-                            </td>
+                                No Movies Please rate some movies
+                            </td>:
+                            <tr>
+                                <td>
+                                    <p>Movie List</p>
+                                    {data.map((item,index) => <p>{item['name'+index]}</p>)} 
+                                </td>
+                                <td>
+                                    <p>My Ratings</p>
+                                    {data.map((item,index) => <p>{item['rating'+index]}</p>)}
+                                </td>
+                            </tr>
+                            }
+                            
                         </tr>
                     </tbody>
                 </table>
