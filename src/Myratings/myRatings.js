@@ -9,8 +9,15 @@ class Myratings extends React.Component {
     render(){
         var data = []
         var name = []
+        var rating = []
         name = JSON.parse(localStorage.getItem('name'));
-        const rating = JSON.parse(localStorage.getItem('rating'));
+        rating = JSON.parse(localStorage.getItem('rating'));
+        for(var i =0 ; i<name.length; i++){
+            var jsonObj = {}
+            jsonObj['name'+ i] = name[i];
+            jsonObj['rating' + i] = rating[i];
+            data.push(jsonObj);
+        }
         return(
             <div>
                 <table>
@@ -23,11 +30,11 @@ class Myratings extends React.Component {
                         <tr>
                             <td>
                                 <p>Movie List</p>
-                                {name.map((item) => <p>{item}</p>)} 
+                                {data.map((item,index) => <p>{item['name'+index]}</p>)} 
                             </td>
                             <td>
                                 <p>My Ratings</p>
-                                {rating.map((item) => <p>{item}</p>)}
+                                {data.map((item,index) => <p>{item['rating'+index]}</p>)}
                             </td>
                         </tr>
                     </tbody>

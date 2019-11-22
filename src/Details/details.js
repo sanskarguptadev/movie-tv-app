@@ -60,7 +60,7 @@ class Details extends React.Component {
 
       handleSubmit(id, name, rating){
           //localStorage.clear();
-           this.handleSession(id, rating)
+          this.handleSession(id, rating)
            if(localStorage.getItem('name') == null && localStorage.getItem('rating') == null){
                var movieName = [];
                var movieRating = [];
